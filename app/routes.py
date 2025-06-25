@@ -1,15 +1,7 @@
 from flask import Blueprint, render_template
-import mysql.connector
-import config
+import db
 
 main = Blueprint('main', __name__)
-
-conn = mysql.connector.connect(
-    host="localhost",
-    user=config.DB_USER,
-    password=config.DB_PASSWORD,
-    database=config.DB_NAME
-)
 
 @main.route('/')
 def home():
@@ -17,6 +9,7 @@ def home():
 
 @main.route('/companies')
 def view_companies():
+    conn = db.get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM companies")
     data = cursor.fetchall()
