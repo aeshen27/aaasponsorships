@@ -17,7 +17,7 @@ def home():
 
 @main.route('/companies')
 def view_companies():
-    cursor = conn.cursor()
+    cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM companies")
     data = cursor.fetchall()
     cursor.close()
