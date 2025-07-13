@@ -16,11 +16,14 @@ def list_companies():
 def add_company():
     if request.method == 'POST':
         name = request.form.get('name')
+        type = request.form.get('type')
         email = request.form.get('email')
-        
+        contact = request.form.get('contact')
+        notes = request.form.get('notes')
+
         conn = db.get_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("INSERT ()")
+        cursor.execute("INSERT INTO companies (name, contacted, type, email, contact, notes) VALUES (" + name + ", 'no', " + type + ", " + email + ", " + contact + ", " + notes + ");")
         
         return redirect(url_for('companies.list_companies'))
     
