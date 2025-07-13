@@ -10,4 +10,4 @@ def list_companies():
     cursor.execute("SELECT * FROM companies")
     data = cursor.fetchall()
     cursor.close()
-    return render_template('companies.html', companies = data)
+    return render_template('companies/list.html', companies = data)
