@@ -23,7 +23,11 @@ def add_company():
 
         conn = db.get_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("INSERT INTO companies (name, contacted, type, email, contact, notes) VALUES (" + name + ", 'no', " + type + ", " + email + ", " + contact + ", " + notes + ");")
+        sql = """
+        INSERT INTO companies (name, contacted, type, email, contact, notes) VALUES (%s, 'no', %s, %s, %s, %s);
+        """
+        values = (name, type, email, contact, notes)
+        cursor.execute(sql, values)
         
         return redirect(url_for('companies.list_companies'))
     
