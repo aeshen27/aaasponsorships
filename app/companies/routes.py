@@ -27,7 +27,12 @@ def add_company():
         INSERT INTO companies (name, contacted, type, email, contact, notes) VALUES (%s, 'no', %s, %s, %s, %s);
         """
         values = (name, type, email, contact, notes)
-        cursor.execute(sql, values)
+        try:
+            cursor.execute(sql, values)
+            conn.commit()
+        except Exception as e:
+            print("DB Error:", e)
+            raise
         
         return redirect(url_for('companies.list_companies'))
     
