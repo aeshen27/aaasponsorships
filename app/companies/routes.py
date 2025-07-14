@@ -37,3 +37,24 @@ def add_company():
         return redirect(url_for('companies.list_companies'))
     
     return render_template('companies/add.html')
+
+@companies.route('/edit/<int:id>', methods=['POST'])
+def edit_company(id):
+    name = request.form.get('name')
+    type_ = request.form.get('type')
+    email = request.form.get('email')
+    contact = request.form.get('contact')
+    notes = request.form.get('notes')
+
+    conn = db.get_connection()
+    cursor = conn.cursor()
+    sql = """
+        UPDATE companies
+        SET name = %s, type = %s, email = %s, contact = %s, notes = %s
+        WHERE id = %s
+    """
+    cursor.execute(sql, (name, type_, email, contact, notes, id))
+    conn.commit()
+    cursor.close()
+    return redirect(url_for('companies.list_companies'))
+
