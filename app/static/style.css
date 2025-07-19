@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+.page-content {
+    padding: 32px;
+}
+
 #top-banner {
     height: 60px;
     background-color: #343a40;
