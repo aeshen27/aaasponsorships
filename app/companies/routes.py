@@ -36,7 +36,7 @@ def add_company():
         
         return redirect(url_for('companies.list_companies'))
     
-    return render_template('companies/add.html')
+    return render_template('companies.list_companies')
 
 @companies.route('/edit/<int:id>', methods=['POST'])
 def edit_company(id):

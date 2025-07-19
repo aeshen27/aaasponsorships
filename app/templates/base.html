@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}AAA Sponsorships{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div id="top-banner">
+        <div id="banner-logo" onclick="toggleSideNav()">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="40" style="margin-right:10px;">
+            <span>AAA Sponsorships</span>
+        </div>
+    </div>
+    <!-- Side Nav -->
+    <div id="side-nav">
+        <!-- Side nav content here -->
+        <ul>
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('companies.list_companies') }}">Companies</a></li>
+        </ul>
+    </div>
+    <div style="margin-top:60px; margin-left:0;" id="main-content">
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        function toggleSideNav() {
+            document.getElementById('side-nav').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+#top-banner {
+    height: 60px;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+}
+
+#banner-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#side-nav {
+    position: fixed;
+    top: 60px; 
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    padding: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1020;
+}
+
+#side-nav.open {
+    transform: translateX(0);
+}
