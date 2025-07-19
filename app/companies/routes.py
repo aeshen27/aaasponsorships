@@ -58,3 +58,12 @@ def edit_company(id):
     cursor.close()
     return redirect(url_for('companies.list_companies'))
 
+@companies.route('/delete/<int:id>', methods=['POST'])
+def delete_company(id):
+    conn = db.get_connection()
+    cursor = conn.cursor()
+    sql = "DELETE FROM companies WHERE id = %s"
+    cursor.execute(sql, (id,))
+    conn.commit()
+    cursor.close()
+    return redirect(url_for('companies.list_companies'))
